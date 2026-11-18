@@ -1,0 +1,6 @@
+image,object_id,error_type,reviewer,note
+img_003.jpg,8,thua,NguyenAnPhu,"đã có nhãn three_wheeler cho cùng một xe với id = 9 nhưng chuẩn hơn, có thể loại bỏ nhãn này"
+img_006.jpg,64,sai_vi_tri_kich_thuoc,NguyenAnPhu,"nhìn rõ một người với kích cỡ nhìn thấy nhỏ, nhưng box quá lớn"
+img_014.jpg,"28, 119",sai_lop,NguyenAnPhu,nhầm gánh đò với xe ba bánh (được dùng bởi người được gán nhãn 'person' id 131)
+img_031.jpg,"395, 397",sai_vi_tri_kich_thuoc,NguyenAnPhu,"kích cỡ vật trên ảnh thực tế lớn hơn, vậy mà không vẽ box bao phủ đầy đủ"
+img_035.jpg,459,thua,NguyenAnPhu,không rõ là vật gì mà vẫn gán nhãn
