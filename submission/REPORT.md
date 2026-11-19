@@ -13,7 +13,7 @@
 ```
 python scripts/merge_prelabels.py work/prelabel/yoloe_all/pre.coco.json work/prelabel/y26_all/pre.coco.json --thr "person=0.35,motorbike=0.5,car=0.35" --conf 0.3 --iou 0.6 --split "batch,gold" --out work/prelabel/merged_review/pre.coco.json
 ```
-- **Phiên bản SAM bạn chọn** (SAM 1) và lý do: <<chất lượng mask, tốc độ, RAM, quyền truy cập>> chất lượng mask
+- **Phiên bản SAM bạn chọn** (SAM 1) và lý do:  chất lượng mask
 - Lỗi nào **không sửa được bằng đổi ngưỡng** (ví dụ tuk-tuk bị gọi `car`)? Sửa thế nào? <<>>
 - Box **điểm cao mà sai** hoặc **điểm thấp mà đúng** (ảnh nào): <<>>
 - Giới hạn: chọn ngưỡng trên chính gold (4 ảnh) nên số đo máy trên gold là lạc quan: <<>>
@@ -22,22 +22,22 @@ python scripts/merge_prelabels.py work/prelabel/yoloe_all/pre.coco.json work/pre
 
 | Trạng thái | Số | Tỉ lệ | Mẫu số |
 |---|---|---|---|
-| accepted | <<>> | <<>> | <<box máy>> |
-| edited | <<>> | <<>> | <<>> |
-| deleted | <<>> | <<>> | <<>> |
-| added | <<>> | <<>> | <<đối tượng sau duyệt>> |
+| accepted (giữ nguyên) | 425 | 425/432 = 98.4% | 432 box máy |
+| edited (sửa) | 1 | 1/432 = 0.2% | 432 box máy |
+| deleted (xoá) | 6 | 6/432 = 1.4% | 432 box máy |
+| added (vẽ thêm) | 21 | 21/447 = 4.7% | 447 đối tượng sau duyệt |
 
 - Lớp nào máy tệ nhất? Vì sao (dẫn ảnh)? <<>>
-- So với gold: precision / recall của **máy** <<>> (mẫu số: <<đối tượng gold>>)
+- So với gold: precision / recall của **máy** 65.5% / 78.3% (mẫu số: 46)
 
 ## 3. Thiên kiến tự động hóa và ảnh bẫy
 
-- Bắt bẫy: <<.../12>>; loại nào lọt: <<>>; vì sao (bạn đã bỏ bước nào của checklist)? <<>>
-- Accepted cao mà bắt bẫy thấp (hoặc ngược lại) nói gì về cách bạn duyệt? <<>>
+- Bắt bẫy: 11/12; loại nào lọt: missing; vì sao: quá nhiều vật thể, khó xác định được vật nào bị thiếu nhãn
+- Accepted cao mà bắt bẫy thấp (hoặc ngược lại) nói gì về cách bạn duyệt?
 
 ## 4. Máy có đáng dùng không?
 
-- Thời gian (từ `time_log.csv`): gán tay <<... phút/ảnh>> vs duyệt <<... phút/ảnh>>. Thiên lệch (bạn gán gold trước nên đã quen cảnh): <<>>
+- Thời gian (từ `time_log.csv`): gán tay 4 phút/ảnh vs duyệt 1 phút/ảnh. Thiên lệch (bạn gán gold trước nên đã quen cảnh): không
 - Kết luận: <<có / không / chỉ cho lớp nào>>, dựa trên <<số liệu>>
 - **Ba quy tắc giảm thiên kiến của bạn** (mỗi quy tắc kiểm tra được bằng số hoặc việc làm):
   1. <<>>
@@ -67,14 +67,14 @@ python scripts/merge_prelabels.py work/prelabel/yoloe_all/pre.coco.json work/pre
 - **Giới hạn mẫu nhỏ** (cận trên 95% trong `qc_report_auto.md`): <<>>
 - Script kiểm được / không kiểm được (ví dụ ôm sát, cùng bỏ sót với máy, theo checklist thật): <<>>
 
-**Quyết định: <<Release / Hold / Rework>>**, ngày <<YYYY-MM-DD>>. Lý do (đi theo Hold → Rework → Release): <<>>
-Nếu Rework / Hold, việc cần làm tiếp: <<>>
+**Quyết định: <<Release / Hold / Rework>>**, ngày 2026-11-19. Lý do (đi theo Hold → Rework → Release): Hold
+Nếu Rework / Hold, việc cần làm tiếp: tinh chỉnh lại thông số, tiếp tục kiểm soát chất lượng dự liệu
 
 ## 8. Ghi chú cá nhân
 
 - **Dùng AI để làm bài** (công cụ nào, việc gì, kiểm tra thế nào; "không dùng" nếu không): <<>>
-- Gold có bị nhiễm không (bạn có nhìn pre-label hay hỏi AI trước khi gán xong)? <<không / có, như sau: ...>>
-- Máy / GPU / CVAT dùng; vướng mắc cài đặt: <<>>
-- Dùng cache `data/cache/` thay vì tự chạy? <<không / có, vì ...>>
-- Lỗi / bug script đã gặp (nếu có): <<>>
-- Một điều bạn làm khác lần sau: <<>>
+- Gold có bị nhiễm không (bạn có nhìn pre-label hay hỏi AI trước khi gán xong)? không
+- Máy / GPU / CVAT dùng; vướng mắc cài đặt: không
+- Dùng cache `data/cache/` thay vì tự chạy? không
+- Lỗi / bug script đã gặp (nếu có): không
+- Một điều bạn làm khác lần sau: 
